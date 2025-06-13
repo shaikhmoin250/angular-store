@@ -15,8 +15,13 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HeaderComponent } from './header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
+import { MatBadgeModule } from '@angular/material/badge'; // Import MatBadgeModule
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -24,7 +29,15 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent],
+      imports: [
+        HttpClientTestingModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        RouterTestingModule, // Add RouterTestingModule
+        MatBadgeModule // Add MatBadgeModule
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);

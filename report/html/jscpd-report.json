@@ -1,0 +1,290 @@
+{
+  "statistics": {
+    "detectionDate": "2025-06-11T15:56:50.581Z",
+    "formats": {
+      "typescript": {
+        "sources": {
+          "src/app/item-list/item-list.component.ts": {
+            "lines": 35,
+            "tokens": 193,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/item-details/item-details.component.ts": {
+            "lines": 117,
+            "tokens": 812,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 26,
+            "duplicatedTokens": 161,
+            "percentage": 22.22,
+            "percentageTokens": 19.83,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/home/home.component.ts": {
+            "lines": 32,
+            "tokens": 153,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 7,
+            "duplicatedTokens": 74,
+            "percentage": 21.88,
+            "percentageTokens": 48.37,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/header/header.component.ts": {
+            "lines": 48,
+            "tokens": 305,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/confirmation/confirmation.component.ts": {
+            "lines": 32,
+            "tokens": 125,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/checkout/checkout.component.ts": {
+            "lines": 80,
+            "tokens": 542,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/category/category.component.ts": {
+            "lines": 30,
+            "tokens": 112,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/cart/cart.component.ts": {
+            "lines": 97,
+            "tokens": 692,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 26,
+            "duplicatedTokens": 161,
+            "percentage": 26.8,
+            "percentageTokens": 23.27,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/environments/environment.ts": {
+            "lines": 18,
+            "tokens": 20,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/environments/environment.prod.ts": {
+            "lines": 18,
+            "tokens": 20,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/store.service.ts": {
+            "lines": 173,
+            "tokens": 1304,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/app.module.ts": {
+            "lines": 82,
+            "tokens": 512,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/app.component.ts": {
+            "lines": 34,
+            "tokens": 155,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 7,
+            "duplicatedTokens": 74,
+            "percentage": 20.59,
+            "percentageTokens": 47.74,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/app/app-routing.module.ts": {
+            "lines": 39,
+            "tokens": 265,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "src/main.ts": {
+            "lines": 28,
+            "tokens": 102,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 863,
+          "tokens": 5312,
+          "sources": 15,
+          "clones": 2,
+          "duplicatedLines": 33,
+          "duplicatedTokens": 235,
+          "percentage": 3.82,
+          "percentageTokens": 4.42,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 863,
+      "tokens": 5312,
+      "sources": 15,
+      "clones": 2,
+      "duplicatedLines": 33,
+      "duplicatedTokens": 235,
+      "percentage": 3.82,
+      "percentageTokens": 4.42,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "typescript",
+      "lines": 27,
+      "fragment": "= {\n    apiVersion: 2,\n    apiVersionMinor: 0,\n    allowedPaymentMethods: [\n      {\n        type: 'CARD',\n        parameters: {\n          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],\n          allowedCardNetworks: ['MASTERCARD', 'VISA']\n        },\n        tokenizationSpecification: {\n          type: 'PAYMENT_GATEWAY',\n          parameters: {\n            gateway: 'example',\n            gatewayMerchantId: 'exampleGatewayMerchantId'\n          }\n        }\n      }\n    ],\n    merchantInfo: {\n      merchantId: '17613812255336763067',\n      merchantName: 'Demo Only (you will not be charged)'\n    },\n    transactionInfo: {\n      totalPriceStatus: 'FINAL',\n      totalPriceLabel: 'Total',\n      totalPrice: this.cartTotal",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/app/cart/cart.component.ts",
+        "start": 29,
+        "end": 55,
+        "startLoc": {
+          "line": 29,
+          "column": 2,
+          "position": 118
+        },
+        "endLoc": {
+          "line": 55,
+          "column": 10,
+          "position": 279
+        }
+      },
+      "secondFile": {
+        "name": "src/app/item-details/item-details.component.ts",
+        "start": 59,
+        "end": 85,
+        "startLoc": {
+          "line": 59,
+          "column": 2,
+          "position": 391
+        },
+        "endLoc": {
+          "line": 85,
+          "column": 5,
+          "position": 552
+        }
+      }
+    },
+    {
+      "format": "typescript",
+      "lines": 8,
+      "fragment": "categories: CategoryDetails[] = [];\n\n  constructor(private storeService: StoreService) {}\n\n  async ngOnInit(): Promise<void> {\n    this.storeService.getCategories().subscribe(categories => (this.categories = categories));\n  }\n}",
+      "tokens": 0,
+      "firstFile": {
+        "name": "src/app/app.component.ts",
+        "start": 28,
+        "end": 35,
+        "startLoc": {
+          "line": 28,
+          "column": 3,
+          "position": 81
+        },
+        "endLoc": {
+          "line": 35,
+          "column": 2,
+          "position": 155
+        }
+      },
+      "secondFile": {
+        "name": "src/app/home/home.component.ts",
+        "start": 26,
+        "end": 33,
+        "startLoc": {
+          "line": 26,
+          "column": 3,
+          "position": 79
+        },
+        "endLoc": {
+          "line": 33,
+          "column": 2,
+          "position": 153
+        }
+      }
+    }
+  ],
+  "filename": "/app/node_modules/@jscpd/html-reporter/dist/templates/main.pug"
+}

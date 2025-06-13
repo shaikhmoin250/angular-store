@@ -15,8 +15,9 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CartComponent } from './cart.component';
+import { GooglePayButtonModule } from '@google-pay/button-angular'; // Import GooglePayButtonModule
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -24,7 +25,8 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent]
+      declarations: [CartComponent],
+      imports: [HttpClientTestingModule, GooglePayButtonModule] // Add GooglePayButtonModule
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);

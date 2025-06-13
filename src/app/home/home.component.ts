@@ -25,8 +25,17 @@ import { CategoryDetails, StoreService } from '../store.service';
 export class HomeComponent implements OnInit {
   categories: CategoryDetails[] = [];
 
+  /**
+   * Initializes the HomeComponent.
+   * @param {StoreService} storeService - Service for accessing store data, primarily categories.
+   */
   constructor(private storeService: StoreService) {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Fetches categories from the StoreService to be displayed on the home page.
+   * @returns {Promise<void>}
+   */
   async ngOnInit(): Promise<void> {
     this.storeService.getCategories().subscribe(categories => (this.categories = categories));
   }

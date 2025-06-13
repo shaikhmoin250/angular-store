@@ -17,9 +17,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemDetails, StoreService } from '../store.service';
+import { createPaymentDataRequest } from '../utils/payment.utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-function unescapeHtml(text: string) {
+/**
+ * Unescapes HTML entities in a text string.
+ * This uses the browser's DOM parsing capabilities to decode HTML entities.
+ * @param {string} text - The text containing HTML entities to unescape.
+ * @returns {string} The unescaped text.
+ */
+function unescapeHtml(text: string): string {
   const elem = document.createElement('textarea');
   elem.innerHTML = text;
   return elem.textContent || '';
@@ -39,10 +46,21 @@ export class ItemDetailsComponent implements OnInit {
 
   paymentRequest!: google.payments.api.PaymentDataRequest;
 
-  get itemDescription() {
+  /**
+   * Gets the unescaped HTML description of the item.
+   * @returns {string} The unescaped item description.
+   */
+  get itemDescription(): string {
     return unescapeHtml(this.item.description);
   }
 
+  /**
+   * Initializes the ItemDetailsComponent.
+   * @param {StoreService} storeService - Service for accessing store data.
+   * @param {ActivatedRoute} route - Service for accessing route parameters.
+   * @param {MatSnackBar} snackBar - Service for displaying snack bar notifications.
+   * @param {Router} router - Angular router for navigation.
+   */
   constructor(
     private storeService: StoreService,
     private route: ActivatedRoute,
@@ -50,47 +68,25 @@ export class ItemDetailsComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * Angular lifecycle hook called after component initialization.
+   * Fetches item details based on route parameters and sets up the payment request.
+   */
   ngOnInit(): void {
     this.storeService
       .getItem(this.route.snapshot.paramMap.get('listId')!, this.route.snapshot.paramMap.get('itemId')!)
       .subscribe(item => {
         this.item = item!;
 
-        this.paymentRequest = {
-          apiVersion: 2,
-          apiVersionMinor: 0,
-          allowedPaymentMethods: [
-            {
-              type: 'CARD',
-              parameters: {
-                allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                allowedCardNetworks: ['MASTERCARD', 'VISA']
-              },
-              tokenizationSpecification: {
-                type: 'PAYMENT_GATEWAY',
-                parameters: {
-                  gateway: 'example',
-                  gatewayMerchantId: 'exampleGatewayMerchantId'
-                }
-              }
-            }
-          ],
-          merchantInfo: {
-            merchantId: '17613812255336763067',
-            merchantName: 'Demo Only (you will not be charged)'
-          },
-          transactionInfo: {
-            totalPriceStatus: 'FINAL',
-            totalPriceLabel: 'Total',
-            totalPrice: this.item.price.toFixed(2),
-            currencyCode: 'USD',
-            countryCode: 'US'
-          }
-        };
+        this.paymentRequest = createPaymentDataRequest(this.item.price.toFixed(2));
       });
   }
 
-  onAddToCart() {
+  /**
+   * Adds the current item to the shopping cart and displays a notification.
+   * Provides an action to navigate to the cart.
+   */
+  onAddToCart(): void {
     this.storeService.addItemToCart(this.item, this.size, this.quantity);
     const snackbar = this.snackBar.open(`${this.item.title} added to cart.`, 'view cart', {
       duration: 5000
@@ -100,7 +96,13 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
-  async onLoadPaymentData(event: Event) {
+  /**
+   * Handles the payment data loaded from the Google Pay button for a single item purchase.
+   * Processes the order with the current item, then navigates to the confirmation page.
+   * @param {Event} event - The payment data load event, expected to be a CustomEvent.
+   * @returns {Promise<void>}
+   */
+  async onLoadPaymentData(event: Event): Promise<void> {
     const paymentData = (event as CustomEvent<google.payments.api.PaymentData>).detail;
     await this.storeService.processOrder(
       [

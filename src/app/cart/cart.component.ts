@@ -17,6 +17,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItemDetails, StoreService } from '../store.service';
+import { createPaymentDataRequest } from '../utils/payment.utils';
 
 @Component({
   selector: 'app-cart',
@@ -26,48 +27,37 @@ import { CartItemDetails, StoreService } from '../store.service';
 export class CartComponent implements OnInit {
   cart: CartItemDetails[] = [];
 
-  paymentRequest: google.payments.api.PaymentDataRequest = {
-    apiVersion: 2,
-    apiVersionMinor: 0,
-    allowedPaymentMethods: [
-      {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['MASTERCARD', 'VISA']
-        },
-        tokenizationSpecification: {
-          type: 'PAYMENT_GATEWAY',
-          parameters: {
-            gateway: 'example',
-            gatewayMerchantId: 'exampleGatewayMerchantId'
-          }
-        }
-      }
-    ],
-    merchantInfo: {
-      merchantId: '17613812255336763067',
-      merchantName: 'Demo Only (you will not be charged)'
-    },
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPriceLabel: 'Total',
-      totalPrice: this.cartTotal.toFixed(2),
-      currencyCode: 'USD',
-      countryCode: 'US'
-    }
-  };
+  paymentRequest!: google.payments.api.PaymentDataRequest;
 
-  get cartSize() {
+  /**
+   * Calculates the total number of items in the cart.
+   * @returns {number} The total number of items.
+   */
+  get cartSize(): number {
     return this.cart.reduce((total, item) => total + item.quantity, 0);
   }
 
-  get cartTotal() {
+  /**
+   * Calculates the total price of all items in the cart.
+   * @returns {number} The total price.
+   */
+  get cartTotal(): number {
     return this.cart.reduce((total, item) => total + item.quantity * item.item.price, 0);
   }
 
-  constructor(private storeService: StoreService, private router: Router) {}
+  /**
+   * Initializes the CartComponent.
+   * @param {StoreService} storeService - Service for cart and store operations.
+   * @param {Router} router - Angular router for navigation.
+   */
+  constructor(private storeService: StoreService, private router: Router) {
+    this.paymentRequest = createPaymentDataRequest('0.00');
+  }
 
+  /**
+   * Angular lifecycle hook called after component initialization.
+   * Subscribes to cart updates and updates the payment request with the cart total.
+   */
   ngOnInit(): void {
     this.storeService.getCart().subscribe(cart => {
       this.cart = cart;
@@ -75,20 +65,38 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onCheckout() {
+  /**
+   * Navigates to the checkout page.
+   */
+  onCheckout(): void {
     this.router.navigate(['/checkout']);
   }
 
-  onRemove(cartItem: CartItemDetails) {
+  /**
+   * Removes an item from the cart.
+   * @param {CartItemDetails} cartItem - The cart item to remove.
+   */
+  onRemove(cartItem: CartItemDetails): void {
     this.storeService.removeCartItem(cartItem);
   }
 
-  onQuantityChange(event: Event, cartItem: CartItemDetails) {
+  /**
+   * Handles the change in quantity for a cart item.
+   * @param {Event} event - The input change event.
+   * @param {CartItemDetails} cartItem - The cart item whose quantity is being changed.
+   */
+  onQuantityChange(event: Event, cartItem: CartItemDetails): void {
     const input = event.target as HTMLInputElement;
     this.storeService.updateCartItemQuantity({ ...cartItem, quantity: input.valueAsNumber });
   }
 
-  async onLoadPaymentData(event: Event) {
+  /**
+   * Handles the payment data loaded from the Google Pay button.
+   * Processes the order, clears the cart, and navigates to the confirmation page.
+   * @param {Event} event - The payment data load event, expected to be a CustomEvent.
+   * @returns {Promise<void>}
+   */
+  async onLoadPaymentData(event: Event): Promise<void> {
     const paymentData = (event as CustomEvent<google.payments.api.PaymentData>).detail;
     await this.storeService.processOrder(this.cart, paymentData);
 

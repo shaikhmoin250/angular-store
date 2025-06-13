@@ -27,8 +27,17 @@ export class AppComponent {
 
   categories: CategoryDetails[] = [];
 
+  /**
+   * Initializes the AppComponent.
+   * @param {StoreService} storeService - Service for accessing store data.
+   */
   constructor(private storeService: StoreService) {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Fetches categories from the StoreService.
+   * @returns {Promise<void>}
+   */
   async ngOnInit(): Promise<void> {
     this.storeService.getCategories().subscribe(categories => (this.categories = categories));
   }

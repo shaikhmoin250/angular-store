@@ -15,8 +15,13 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CheckoutComponent } from './checkout.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // Import NoopAnimationsModule
 
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
@@ -24,7 +29,15 @@ describe('CheckoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CheckoutComponent]
+      declarations: [CheckoutComponent],
+      imports: [
+        HttpClientTestingModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        NoopAnimationsModule // Add NoopAnimationsModule
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CheckoutComponent);

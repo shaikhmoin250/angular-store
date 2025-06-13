@@ -23,9 +23,22 @@ import { CategoryDetails } from '../store.service';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
+  /**
+   * Input property for the category details to be displayed by this component.
+   * Expected to be provided by the parent component.
+   */
   @Input() category!: CategoryDetails;
 
+  /**
+   * Initializes the CategoryComponent.
+   * Currently, this constructor is empty as no specific initialization logic is needed
+   * beyond what Angular provides.
+   */
   constructor() {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Currently, this method is empty as no specific actions are needed on component initialization.
+   */
   ngOnInit(): void {}
 }

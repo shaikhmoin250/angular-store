@@ -39,11 +39,29 @@ export class CheckoutComponent implements OnInit {
   expDate: string = '';
   cvv: string = '';
 
+  /**
+   * Initializes the CheckoutComponent.
+   * @param {Router} router - Angular router for navigation.
+   * @param {StoreService} storeService - Service for cart and order processing.
+   */
   constructor(private router: Router, private storeService: StoreService) {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Currently, this method is empty as no specific actions are needed on component initialization
+   * beyond what Angular provides.
+   */
   ngOnInit(): void {}
 
-  async onSubmit(event: Event, form: NgForm) {
+  /**
+   * Handles the submission of the checkout form.
+   * Prevents default form submission, processes the order with items from the cart
+   * and mocked payment/shipping details, then navigates to the confirmation page.
+   * @param {Event} event - The form submission event.
+   * @param {NgForm} _form - The Angular form object (marked as unused with an underscore).
+   * @returns {Promise<void>}
+   */
+  async onSubmit(event: Event, _form: NgForm): Promise<void> {
     event.preventDefault();
 
     this.storeService
@@ -52,6 +70,8 @@ export class CheckoutComponent implements OnInit {
       .subscribe(
         async cartItems => {
           await this.storeService.processOrder(cartItems, {
+            apiVersion: 2, // Added apiVersion
+            apiVersionMinor: 0, // Added apiVersionMinor
             shippingAddress: {
               address1: this.address1,
               address2: this.address2,
@@ -61,17 +81,16 @@ export class CheckoutComponent implements OnInit {
               postalCode: this.zip
             },
             paymentMethodData: {
-              type: 'CARD_NUMBER',
-              card: {
-                csc: this.cvv,
-                exp: this.expDate,
-                name: this.cardName,
-                number: this.cardNumber
+              type: 'CARD',
+              description: `Card: ${this.cardNumber.slice(-4)}`,
+              tokenizationData: { // Added mock tokenizationData
+                type: 'PAYMENT_GATEWAY',
+                token: 'exampleToken'
               }
             }
           });
         },
-        error => {},
+        _error => {},
         () => {
           this.storeService.setCart([]);
           this.router.navigate(['/confirm']);

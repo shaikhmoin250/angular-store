@@ -15,7 +15,8 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing'; // Added RouterTestingModule
 import { ItemListComponent } from './item-list.component';
 
 describe('ItemListComponent', () => {
@@ -24,7 +25,8 @@ describe('ItemListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ItemListComponent]
+      declarations: [ItemListComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule] // Added RouterTestingModule
     }).compileComponents();
 
     fixture = TestBed.createComponent(ItemListComponent);

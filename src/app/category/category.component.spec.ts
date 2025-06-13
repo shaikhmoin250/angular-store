@@ -15,8 +15,9 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatCardModule } from '@angular/material/card';
 import { CategoryComponent } from './category.component';
+import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
 
 describe('CategoryComponent', () => {
   let component: CategoryComponent;
@@ -24,11 +25,14 @@ describe('CategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CategoryComponent]
+      declarations: [CategoryComponent],
+      imports: [MatCardModule, RouterTestingModule] // Add RouterTestingModule
     }).compileComponents();
 
     fixture = TestBed.createComponent(CategoryComponent);
     component = fixture.componentInstance;
+    // Provide a mock CategoryDetails object for the input property
+    component.category = { name: 'test-cat', title: 'Test Category', image: 'test.jpg' };
     fixture.detectChanges();
   });
 

@@ -37,4 +37,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+/**
+ * Main routing module for the application.
+ * Configures the top-level routes and exports Angular's RouterModule.
+ */
 export class AppRoutingModule {}

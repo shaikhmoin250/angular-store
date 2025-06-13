@@ -23,11 +23,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
+  /**
+   * Initializes the ConfirmationComponent.
+   * @param {Router} router - Angular router for navigation.
+   */
   constructor(private router: Router) {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Currently, this method is empty as no specific actions are needed on component initialization.
+   */
   ngOnInit(): void {}
 
-  onContinue() {
+  /**
+   * Handles the click event for the "Continue Shopping" button.
+   * Navigates the user back to the home page.
+   */
+  onContinue(): void {
     this.router.navigate(['/']);
   }
 }

@@ -80,4 +80,8 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
   ],
   providers: []
 })
+/**
+ * Main application module.
+ * Declares and imports all necessary components, modules, and providers for the application.
+ */
 export class AppModule {}

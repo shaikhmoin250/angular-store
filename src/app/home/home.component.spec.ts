@@ -15,8 +15,11 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HomeComponent } from './home.component';
+import { CategoryComponent } from '../category/category.component';
+import { MatCardModule } from '@angular/material/card';
+import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -24,7 +27,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [HomeComponent, CategoryComponent],
+      imports: [HttpClientTestingModule, MatCardModule, RouterTestingModule] // Add RouterTestingModule
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);

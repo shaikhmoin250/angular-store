@@ -26,8 +26,17 @@ import { ItemDetails, StoreService } from '../store.service';
 export class ItemListComponent implements OnInit {
   items: ItemDetails[] = [];
 
+  /**
+   * Initializes the ItemListComponent.
+   * @param {StoreService} storeService - Service for accessing store data.
+   * @param {ActivatedRoute} route - Service for accessing current route parameters.
+   */
   constructor(private storeService: StoreService, private route: ActivatedRoute) {}
 
+  /**
+   * Angular lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Fetches items for the current category based on the 'listId' route parameter.
+   */
   ngOnInit(): void {
     this.storeService
       .getItemsByCategory(this.route.snapshot.paramMap.get('listId')!)
