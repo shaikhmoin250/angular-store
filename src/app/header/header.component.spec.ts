@@ -35,4 +35,8 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should run a simple truthy test', () => {
+    expect(true).toBeTruthy();
+  });
 });

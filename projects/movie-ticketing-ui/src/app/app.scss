@@ -1,0 +1,43 @@
+/* Basic styles for app layout */
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  nav a {
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+main {
+  padding: 1rem;
+  min-height: calc(100vh - 150px); // Adjust based on header/footer actual height
+}
+
+footer {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+/* Basic Router Link Active Styling (optional) */
+nav a.active {
+  font-weight: bold;
+  // Add more distinct styling if needed
+}
